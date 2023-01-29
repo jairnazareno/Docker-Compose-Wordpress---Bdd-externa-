@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - 80:80
+    environment:
+      WORDPRESS_DB_HOST: 10.0.0.5
+      WORDPRESS_DB_USER: jair
+      WORDPRESS_DB_PASSWORD: jair123
+      WORDPRESS_DB_NAME: jairnaza
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    hostname: sitio.wordpressnazareno.online

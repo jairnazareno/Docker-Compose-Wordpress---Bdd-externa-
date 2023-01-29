@@ -1,0 +1,29 @@
+version: "3"
+services:
+  database:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345jair
+      MYSQL_DATABASE: logidb
+      MYSQL_USER: logi
+      MYSQL_PASSWORD: 12345jair
+    volumes:
+      - mysql:/var/lib/mysql
+
+    wordpress:
+      depends_on:
+        - database
+      image: wordpress:latest
+      restart: always
+      ports:
+        - "80:80"
+      environment:
+        WORDPRESS_DB_HOST: database:3306
+        WORDPRESS_DB_USER: logi
+        WORDPRESS_DB_PASSWORD: 12345jair
+        WORDPRESS_DB_NAME: logidb
+      volumes:
+        [./:/var/www/html]
+volumes:
+  mysql: {}
